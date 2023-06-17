@@ -2,7 +2,7 @@
 from rest_framework import serializers
 
 # import model from models.py
-from .models import Student
+from .models import Student, Drink
 
 
 # Create a model serializer
@@ -11,3 +11,9 @@ class StudentsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Student
         fields = ('fullname', 'email')
+
+
+class DrinkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= Drink
+        fields = ['id', 'name', 'description']
