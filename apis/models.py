@@ -16,3 +16,12 @@ class Drink(models.Model):
 
     def __str__(self):
         return self.name + " " + self.description
+
+
+class Employees(models.Model):
+    fullname = models.CharField(max_length=200)
+    sex = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.fullname
+

@@ -5,9 +5,9 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from apis.models import Student, Drink
-from apis.serializers import StudentsSerializer, DrinkSerializer
-from .models import Drink
+from apis.models import Student, Drink, Employees
+from apis.serializers import StudentsSerializer, DrinkSerializer, EmployeesSerializer
+from .models import Drink, Employees
 
 
 # Create your views here.
@@ -20,7 +20,7 @@ class StudentsViewSet(viewsets.ModelViewSet):
     serializer_class = StudentsSerializer
 
 
-# function based view for student
+# function based view for drinks
 @api_view(['GET', 'POST'])
 def drink_list(request):
     if request.method == 'GET':
@@ -58,3 +58,11 @@ def drink_detail(request, pk):
     elif request.method == 'DELETE':
         Drink.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class EmployeesViewSet(viewsets.ModelViewSet):
+
+    queryset = Employees.objects.all()
+
+    serializer_class = EmployeesSerializer
+

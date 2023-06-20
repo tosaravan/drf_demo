@@ -13,10 +13,16 @@ router = routers.DefaultRouter()
 # define the router path and viewset to be used
 router.register(r'students', StudentsViewSet)
 
+
+# employees URL
+
+router.register(r'employees', EmployeesViewSet)
+
 # specify URL Path for rest_framework
 urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls')),
     path('drinks/',views.drink_list),
     path('drinks/<int:pk>/',views.drink_detail),
+
 ]
