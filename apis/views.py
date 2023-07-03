@@ -74,7 +74,7 @@ def drink_feedback(request):
     if request.method == 'GET':
         drinks_feedback = DrinkFeedback.objects.all()
         serializers = DrinksFeedbackSerializer(drinks_feedback, many=True)
-        return Response(serializers)
+        return Response(serializers.data)
 
     elif request.method == 'POST':
         serializer = DrinksFeedbackSerializer(data=request.data)
