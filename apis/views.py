@@ -38,11 +38,13 @@ def drink_list(request):
 
 # function view to get a specific drink based on the id
 @api_view(['GET', 'PUT', 'DELETE'])
-def drink_detail(request, pk):
+def drink_detail(request, pk):#
     try:
         drink = Drink.objects.get(pk=pk)
     except Drink.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
+
+#Coment
 
     if request.method == 'GET':
         serializer = DrinkSerializer(drink)
