@@ -5,9 +5,9 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from apis.models import Student, Drink, Employees
-from apis.serializers import StudentsSerializer, DrinkSerializer, EmployeesSerializer
-from .models import Drink, Employees
+from apis.models import Student, Drink, Employees, DrinkFeedback
+from apis.serializers import StudentsSerializer, DrinkSerializer, EmployeesSerializer, DrinksFeedbackSerializer
+from .models import Drink, Employees, DrinkFeedback
 
 
 # Create your views here.
@@ -38,13 +38,13 @@ def drink_list(request):
 
 # function view to get a specific drink based on the id
 @api_view(['GET', 'PUT', 'DELETE'])
-def drink_detail(request, pk):#
+def drink_detail(request, pk):
     try:
         drink = Drink.objects.get(pk=pk)
     except Drink.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-#Coment
+# Comment
 
     if request.method == 'GET':
         serializer = DrinkSerializer(drink)
@@ -67,4 +67,21 @@ class EmployeesViewSet(viewsets.ModelViewSet):
     queryset = Employees.objects.all()
 
     serializer_class = EmployeesSerializer
+
+
+@api_view(['GET', 'POST'])
+def drink_feedback(request):
+    if request.method == 'GET':
+        drinks_feedback = DrinkFeedback.objects.all()
+        serializers = DrinksFeedbackSerializer(drinks_feedback, many=True)
+        return Response(serializers)
+
+    elif request.method == 'POST':
+        serializer = DrinksFeedbackSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
