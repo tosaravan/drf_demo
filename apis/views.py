@@ -49,14 +49,14 @@ def drink_detail(request, pk):
         return Response(serializer.data)
 
     elif request.method == 'PUT':
-        serializer = DrinkSerializer(Drink, request.data)
+        serializer = DrinkSerializer(drink, request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'DELETE':
-        Drink.delete()
+        drink.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
@@ -98,14 +98,14 @@ def drink_feedback_detail(request, pk):
         return Response(serializer.data)
 
     elif request.method == 'PUT':
-        serializer = DrinksFeedbackSerializer(DrinkFeedback, request.data)
+        serializer = DrinksFeedbackSerializer(drink_feedback, request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'DELETE':
-        DrinkFeedback.delete()
+        drink_feedback.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
