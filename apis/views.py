@@ -44,8 +44,6 @@ def drink_detail(request, pk):
     except Drink.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-# Comment
-
     if request.method == 'GET':
         serializer = DrinkSerializer(drink)
         return Response(serializer.data)
@@ -84,4 +82,30 @@ def drink_feedback(request):
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# function view to get a specific drinks feedback with ID
+@api_view(['GET', 'PUT', 'DELETE'])
+def drink_feedback_detail(request, pk):
+
+    try:
+        drink_feedback = DrinkFeedback.objects.get(pk=pk)
+    except DrinkFeedback.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = DrinksFeedbackSerializer(drink_feedback)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = DrinksFeedbackSerializer(DrinkFeedback, request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        DrinkFeedback.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 

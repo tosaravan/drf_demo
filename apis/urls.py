@@ -23,6 +23,7 @@ urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls')),
     path('drinks/', views.drink_list),
-    path('drinks/<int:pk>/',views.drink_detail),
+    path('drinks/<int:pk>/', views.drink_detail),
     path('drinks_feedback/', views.drink_feedback),
+    path('drinks_feedback/<int:pk>/', views.drink_feedback_detail),
 ]

@@ -30,4 +30,4 @@ class DrinksFeedbackSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = DrinkFeedback
-        fields = ['fullname', 'email', 'feedback']
+        fields = ['id', 'fullname', 'email', 'feedback']
