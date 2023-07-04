@@ -26,4 +26,8 @@ urlpatterns = [
     path('drinks/<int:pk>/', views.drink_detail),
     path('drinks_feedback/', views.drink_feedback),
     path('drinks_feedback/<int:pk>/', views.drink_feedback_detail),
+    path('users/', views.users),
+    path('users_detail/<int:pk>/', views.users_detail),
+
+
 ]
