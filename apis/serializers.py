@@ -2,7 +2,7 @@
 from rest_framework import serializers
 
 # import model from models.py
-from .models import Student, Drink, Employees, DrinkFeedback, Users
+from .models import Student, Drink, Employees, DrinkFeedback
 
 
 # Create a model serializer
@@ -32,10 +32,4 @@ class DrinksFeedbackSerializer(serializers.ModelSerializer):
         model = DrinkFeedback
         fields = ['id', 'fullname', 'email', 'feedback']
 
-
-class UserSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Users
-        fields = ['id', 'firstname', 'lastname', 'email', 'mobile', 'postcode', 'country']
 
