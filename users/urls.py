@@ -14,5 +14,7 @@ router = routers.DefaultRouter()
 urlpatterns = [
     path('users/', views.users),
     path('users_detail/<int:pk>/', views.users_detail),
+    path('role/', views.role),
+    path('role_detail/<int:pk>/', views.role_detail),
 ]
 
