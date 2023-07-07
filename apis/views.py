@@ -5,9 +5,9 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from apis.models import Student, Drink, Employees, DrinkFeedback
-from apis.serializers import StudentsSerializer, DrinkSerializer, EmployeesSerializer, DrinksFeedbackSerializer
-from .models import Drink, Employees, DrinkFeedback
+from apis.models import Student, Drink, Employee, DrinkFeedback
+from apis.serializers import StudentsSerializer, DrinkSerializer, EmployeeSerializer, DrinksFeedbackSerializer
+from .models import Drink, Employee, DrinkFeedback
 
 
 # Create your views here.
@@ -60,11 +60,11 @@ def drink_detail(request, pk):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class EmployeesViewSet(viewsets.ModelViewSet):
+class EmployeeViewSet(viewsets.ModelViewSet):
 
-    queryset = Employees.objects.all()
+    queryset = Employee.objects.all()
 
-    serializer_class = EmployeesSerializer
+    serializer_class = EmployeeSerializer
 
 
 @api_view(['GET', 'POST'])

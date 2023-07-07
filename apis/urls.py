@@ -16,7 +16,7 @@ router.register(r'students', StudentsViewSet)
 
 # employees URL
 
-router.register(r'employees', EmployeesViewSet)
+router.register(r'employees', EmployeeViewSet)
 
 # specify URL Path for rest_framework
 urlpatterns = [
